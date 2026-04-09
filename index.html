@@ -298,16 +298,23 @@
       gap: 20px;
       overflow-x: auto;
       padding-bottom: 10px;
-      scroll-snap-type: x mandatory;
     }
 
-    .video-grid iframe {
+    .video-item {
       min-width: 320px;
       height: 180px;
       flex-shrink: 0;
-      border: none;
       border-radius: 16px;
-      scroll-snap-align: start;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .video-item img,
+    .video-item iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: none;
     }
 
   </style>
@@ -330,24 +337,35 @@
 
   <section id="videos">
   <div class="container">
+    <div class="section-label">Featured Video</div>
+    <h2 class="section-title">วิดีโอแนะนำ</h2>
+
+    <div class="card video-card" style="margin-bottom:40px;">
+      <iframe
+        src="https://www.youtube.com/embed/2dBpSbaD4eU"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+
     <div class="section-label">Video Showcase</div>
-    <h2 class="section-title">วิดีโอจาก Trinity Center</h2>
+    <h2 class="section-title">วิดีโอทั้งหมด</h2>
 
     <div class="video-grid">
-      <iframe src="https://www.youtube.com/embed/2dBpSbaD4eU" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/4pMFghgXCKE" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/m9JOHc4jAnA" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/x99aU0_hMMM" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/fopVl0mOw1g" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/Ial54mJn41M" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/VDmD2GoW_sg" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/vNUCkkgXWQM" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/h-arkvs3x8w" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/apBVB_GYkwQ" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/uBY-3BloHic" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/QkI6akx93qQ" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/FrvlZ1MYnuQ" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/SZlvmFqwjxU" allowfullscreen></iframe>
+      <div class="video-item" data-id="2dBpSbaD4eU"></div>
+      <div class="video-item" data-id="4pMFghgXCKE"></div>
+      <div class="video-item" data-id="m9JOHc4jAnA"></div>
+      <div class="video-item" data-id="x99aU0_hMMM"></div>
+      <div class="video-item" data-id="fopVl0mOw1g"></div>
+      <div class="video-item" data-id="Ial54mJn41M"></div>
+      <div class="video-item" data-id="VDmD2GoW_sg"></div>
+      <div class="video-item" data-id="vNUCkkgXWQM"></div>
+      <div class="video-item" data-id="h-arkvs3x8w"></div>
+      <div class="video-item" data-id="apBVB_GYkwQ"></div>
+      <div class="video-item" data-id="uBY-3BloHic"></div>
+      <div class="video-item" data-id="QkI6akx93qQ"></div>
+      <div class="video-item" data-id="FrvlZ1MYnuQ"></div>
+      <div class="video-item" data-id="SZlvmFqwjxU"></div>
     </div>
   </div>
 </section>
@@ -494,5 +512,23 @@
       </div>
     </div>
   </footer>
+  <script>
+    const items = document.querySelectorAll('.video-item');
+
+    items.forEach(item => {
+      const id = item.dataset.id;
+      const thumbnail = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+
+      item.innerHTML = `<img src="${thumbnail}" />`;
+
+      item.addEventListener('mouseenter', () => {
+        item.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&mute=1" allow="autoplay"></iframe>`;
+      });
+
+      item.addEventListener('mouseleave', () => {
+        item.innerHTML = `<img src="${thumbnail}" />`;
+      });
+    });
+  </script>
 </body>
 </html>
