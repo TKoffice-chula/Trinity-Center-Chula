@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trinity Center</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      color: #1f2937;
+      background: #f8fafc;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0f172a, #0f766e, #0ea5e9);
+      color: white;
+      padding: 80px 0;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 999px;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      max-width: 780px;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .hero-buttons {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 14px;
+      font-weight: bold;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #0f172a;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.35);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-label {
+      color: #0f766e;
+      font-size: 0.85rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      margin-bottom: 26px;
+      color: #0f172a;
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+    }
+
+    .video-card iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      display: block;
+    }
+
+    .video-content {
+      padding: 24px;
+    }
+
+    .video-content h3 {
+      margin-bottom: 10px;
+      font-size: 1.35rem;
+    }
+
+    .video-content p {
+      color: #475569;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .gallery-item h3 {
+      padding: 18px 18px 22px;
+      font-size: 1.05rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 24px;
+    }
+
+    .about-content,
+    .vision-box,
+    .activity-card,
+    .contact-box {
+      padding: 32px;
+    }
+
+    .about-content p,
+    .vision-box p,
+    .activity-card p,
+    .contact-text {
+      color: #475569;
+    }
+
+    .about-content p + p {
+      margin-top: 16px;
+    }
+
+    .vision-wrapper {
+      background: linear-gradient(135deg, #0f766e, #0f172a);
+      color: white;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+    }
+
+    .vision-wrapper p {
+      color: rgba(255,255,255,0.9);
+    }
+
+    .stats-grid {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .stat-box {
+      background: rgba(255,255,255,0.12);
+      padding: 18px;
+      border-radius: 18px;
+    }
+
+    .stat-box strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+    }
+
+    .activity-card h3 {
+      margin-bottom: 12px;
+      color: #0f172a;
+    }
+
+    footer {
+      background: #020617;
+      color: white;
+      padding: 72px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .footer-title {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .footer-desc {
+      color: #cbd5e1;
+      max-width: 620px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .contact-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+    }
+
+    .contact-box .label {
+      color: #67e8f9;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .contact-box .value {
+      font-size: 1.05rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    @media (max-width: 900px) {
+      .about-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding: 60px 0;
+      }
+
+      section,
+      footer {
+        padding: 56px 0;
+      }
+
+      .about-content,
+      .vision-box,
+      .activity-card,
+      .contact-box,
+      .video-content {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-badge">Trinity Center</div>
+      <h1>Trinity Center</h1>
+      <p>
+        ศูนย์แห่งความเป็นเลิศด้านการพัฒนาองค์ความรู้ การฝึกอบรม และความร่วมมือทางวิชาการ
+        เพื่อยกระดับการดูแลผู้ป่วยโรคไตอย่างยั่งยืน
+      </p>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="#about">เกี่ยวกับศูนย์</a>
+        <a class="btn btn-secondary" href="#contact">ติดต่อเรา</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="videos">
+    <div class="container">
+      <div class="section-label">Video Showcase</div>
+      <h2 class="section-title">วิดีโอจาก YouTube</h2>
+      <div class="card video-card">
+        <iframe
+          src="https://www.youtube.com/embed/videoseries?list=PL28OvdrT-9Kd8-XpgFKQAurxYZuOcJdlG"
+          title="Trinity Center Playlist"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+        <div class="video-content">
+          <h3>Trinity Center Playlist</h3>
+          <p>รวมวิดีโอทั้งหมดของ Trinity Center จาก YouTube Playlist</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="container">
+      <div class="section-label">Photo Gallery</div>
+      <h2 class="section-title">ภาพกิจกรรมและบรรยากาศงานต่าง ๆ</h2>
+      <div class="gallery-grid">
+        <div class="card gallery-item">
+          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80" alt="Training Workshop" />
+          <h3>Training Workshop</h3>
+        </div>
+        <div class="card gallery-item">
+          <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80" alt="Academic Meeting" />
+          <h3>Academic Meeting</h3>
+        </div>
+        <div class="card gallery-item">
+          <img src="https://images.unsplash.com/photo-1580281657527-47f249e8f4df?auto=format&fit=crop&w=1200&q=80" alt="Hands-on Session" />
+          <h3>Hands-on Session</h3>
+        </div>
+        <div class="card gallery-item">
+          <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=1200&q=80" alt="Community Outreach" />
+          <h3>Community Outreach</h3>
+        </div>
+        <div class="card gallery-item">
+          <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=80" alt="International Collaboration" />
+          <h3>International Collaboration</h3>
+        </div>
+        <div class="card gallery-item">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="Center Activities" />
+          <h3>Center Activities</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="card about-content">
+          <div class="section-label">About the Center</div>
+          <h2 class="section-title">ข้อมูลของศูนย์</h2>
+          <p>
+            Trinity Center เป็นศูนย์ที่มุ่งเน้นการพัฒนาความเป็นเลิศด้านวิชาการ การบริการ
+            และการสร้างเครือข่ายความร่วมมือ เพื่อขับเคลื่อนการดูแลโรคไตในระดับประเทศและภูมิภาค
+            โดยศูนย์ให้ความสำคัญกับการฝึกอบรมบุคลากร การวิจัย การแลกเปลี่ยนองค์ความรู้
+            และการพัฒนาระบบบริการที่มีคุณภาพ
+          </p>
+          <p>
+            จุดเด่นของศูนย์คือการบูรณาการงานด้าน clinical service, academic development
+            และ international collaboration เข้าด้วยกัน เพื่อสร้างผลลัพธ์ที่ยั่งยืนทั้งต่อผู้ป่วย
+            บุคลากร และระบบสุขภาพโดยรวม
+          </p>
+        </div>
+
+        <div class="vision-wrapper">
+          <div class="vision-box">
+            <h3 style="font-size: 1.8rem; margin-bottom: 14px;">วิสัยทัศน์</h3>
+            <p>
+              เป็นศูนย์กลางด้านการฝึกอบรม วิชาการ และความร่วมมือระดับนานาชาติ
+              ที่สร้างผลกระทบเชิงบวกต่อการดูแลผู้ป่วยโรคไตอย่างเป็นรูปธรรม
+            </p>
+            <div class="stats-grid">
+              <div class="stat-box">
+                <strong>Training</strong>
+                <span>พัฒนาทักษะบุคลากร</span>
+              </div>
+              <div class="stat-box">
+                <strong>Research</strong>
+                <span>ขับเคลื่อนองค์ความรู้</span>
+              </div>
+              <div class="stat-box">
+                <strong>Network</strong>
+                <span>เชื่อมโยงความร่วมมือ</span>
+              </div>
+              <div class="stat-box">
+                <strong>Impact</strong>
+                <span>สร้างผลลัพธ์ยั่งยืน</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="activities">
+    <div class="container">
+      <div class="section-label">Activities</div>
+      <h2 class="section-title">กิจกรรมของศูนย์</h2>
+      <div class="activities-grid">
+        <div class="card activity-card">
+          <h3>Clinical Training</h3>
+          <p>
+            จัดการฝึกอบรมเชิงปฏิบัติการและการเรียนรู้จากเคสจริง เพื่อเสริมทักษะด้าน interventional nephrology
+            และการดูแลผู้ป่วยโรคไตแบบครบวงจร
+          </p>
+        </div>
+        <div class="card activity-card">
+          <h3>Research &amp; Academic Programs</h3>
+          <p>
+            ส่งเสริมงานวิจัย การประชุมวิชาการ และการแลกเปลี่ยนองค์ความรู้กับเครือข่ายทั้งในประเทศและต่างประเทศ
+          </p>
+        </div>
+        <div class="card activity-card">
+          <h3>Regional Collaboration</h3>
+          <p>
+            สร้างความร่วมมือกับสถาบันพันธมิตรเพื่อพัฒนาศักยภาพบุคลากร ระบบบริการ และมาตรฐานการดูแลผู้ป่วยในระดับภูมิภาค
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="container footer-grid">
+      <div>
+        <div class="section-label" style="color:#67e8f9;">Contact</div>
+        <h2 class="footer-title">ข้อมูลติดต่อ</h2>
+        <p class="footer-desc">
+          สามารถติดต่อ Trinity Center เพื่อสอบถามข้อมูลเกี่ยวกับการฝึกอบรม ความร่วมมือทางวิชาการ
+          กิจกรรมของศูนย์ หรือการประสานงานต่าง ๆ
+        </p>
+      </div>
+
+      <div class="contact-list">
+        <div class="contact-box">
+          <span class="label">Address</span>
+          <div class="value">Trinity Center, Bangkok, Thailand</div>
+        </div>
+        <div class="contact-box">
+          <span class="label">Email</span>
+          <div class="value"><a href="mailto:contact@trinitycenter.org">contact@trinitycenter.org</a></div>
+        </div>
+        <div class="contact-box">
+          <span class="label">Phone</span>
+          <div class="value">+66 2 123 4567</div>
+        </div>
+        <div class="contact-box">
+          <span class="label">Social Media</span>
+          <div class="value">Facebook | YouTube | LinkedIn</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
